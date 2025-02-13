@@ -1,5 +1,5 @@
 # Asset Registry
-Asset registry blockchain application built using Ignite and Cosmos SDK
+Blockchain-based Digital Asset Registry built using Ignite and Cosmos SDK
 
 ---
 
