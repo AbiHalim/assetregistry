@@ -1,0 +1,17 @@
+syntax = "proto3";
+package assetregistry.assetregistry;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "assetregistry/assetregistry/params.proto";
+
+option go_package = "assetregistry/x/assetregistry/types";
+
+// GenesisState defines the assetregistry module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}

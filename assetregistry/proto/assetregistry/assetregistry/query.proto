@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package assetregistry.assetregistry;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "assetregistry/assetregistry/params.proto";
+import "assetregistry/assetregistry/asset.proto";
+
+option go_package = "assetregistry/x/assetregistry/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/assetregistry/assetregistry/params";
+  
+  }
+  
+  // Queries a list of ShowAsset items.
+  rpc ShowAsset (QueryShowAssetRequest) returns (QueryShowAssetResponse) {
+    option (google.api.http).get = "/assetregistry/assetregistry/show_asset/{id}";
+  
+  }
+  
+  // Queries a list of ListAsset items.
+  rpc ListAsset (QueryListAssetRequest) returns (QueryListAssetResponse) {
+    option (google.api.http).get = "/assetregistry/assetregistry/list_asset";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryShowAssetRequest {
+  uint64 id = 1;
+}
+
+message QueryShowAssetResponse {
+  Asset asset = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryListAssetRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryListAssetResponse {
+  repeated Asset asset = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

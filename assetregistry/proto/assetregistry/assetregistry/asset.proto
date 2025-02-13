@@ -1,0 +1,13 @@
+syntax = "proto3";
+package assetregistry.assetregistry;
+
+option go_package = "assetregistry/x/assetregistry/types";
+
+message Asset {
+  
+  string name = 1; 
+  string description = 2; 
+  string owner = 3; 
+  uint64 value = 4; 
+  uint64 id = 5; 
+}
